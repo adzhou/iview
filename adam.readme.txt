@@ -1,0 +1,30 @@
+ReferenceError: primordials is not defined 说primordials这家伙没被定义，结果各种搜索后了解到说gulp版本和node版本不兼容，现在看下我本地的版本：
+
+$ gulp --version
+
+CLI version: 2.2.0
+Local version: 3.9.1
+$ node -v
+
+v14.17.0
+网上说是gulp 3.x版本和node 12.x版本不兼容，我这都14的版本了，应该是从12版本开始出现这个问题的。
+
+
+解决方法
+问题找到，那就更新gulp版本咯，最新的好像已经4.x了，但是这货我又不经常用，更新了干嘛，当然还有另一种就是降低node版本，但时代在进步，你敢要要倒退？
+所以找到了另一个解决方法，使用npm shrinkwrap锁定依赖版本：
+
+项目根目录新建npm-shrinkwrap.json
+npm-shrinkwrap.json内容修改如下：
+{
+  "dependencies": {
+    "graceful-fs": {
+        "version": "4.2.2"
+     }
+  }
+}
+然后试着重新执行npm install，一路畅通，最后完美解决。
+
+上面就是ReferenceError: primordials is not defined报错的解决方法。
+
+参考：https://timonweb.com/javascript/how-to-fix-referenceerror-primordials-is-not-defined-error/
