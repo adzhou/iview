@@ -22,4 +22,10 @@ gulp.task('fonts', function () {
         .pipe(gulp.dest('../dist/styles/fonts'));
 });
 
-gulp.task('default', ['css', 'fonts']);
+//removed by adam zhou
+//gulp.task('default', ['css', 'fonts']);
+//replace with below
+gulp.task('default', done=>{
+gulp.parallel('css', 'fonts');
+done();
+});
